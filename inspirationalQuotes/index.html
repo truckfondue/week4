@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Untitled</title>
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+  </head>
+  <body>
+  <div id="wrapper">
+      <h1>
+        Quote Collector
+      </h1>
+      <form action="#" method="post" enctype="multipart/form-data" onsubmit="return false">
+
+        <p>
+          <label for="textarea">
+            Quote:
+          </label>
+          <br />
+          <textarea class="quote-text" name="textarea" rows="5" placeholder="Insert your awesome quote here."></textarea>
+        </p>
+
+        <p>
+          <label for="textarea">
+            Author
+          </label>
+          <br />
+          <textarea class="author-text" name="textarea" rows="1" placeholder="Who are you quoting?"></textarea>
+        </p>
+
+          <button id='submit-button'>Submit</button>
+       
+         <!--  <input id='submit-button' type="submit" value="Submit" />
+          &nbsp; -->
+         
+         <!--  <input type="reset" value="Clear" />
+          &nbsp; -->
+          
+        </p>
+      </form>
+    </div>
+    <div id="quotes">
+      <h1>Quotes: </h1>
+      <p>You have <span id='document'>0</span> documents.</p>
+    </div>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+    <script src="main.js"></script>
+
+  </body>
+</html>
+
+
