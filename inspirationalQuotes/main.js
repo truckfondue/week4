@@ -2,71 +2,77 @@
   
 // });
 // 
-// You have some Javascript data (primitive value, array, object, etc)
-var numDocs = 0;
+var quoteArray = [];
 
-
-
-// Use jQuery to create a new DOM element.
-// var messageEl = $("<p>You have " +  + " documents.</p>");
-
-// Add the DOM element to the page.
-//$('#quotes').append(messageEl);
-
-
-var Quote = function(text, author){
+var Quote = function(text, author, rating){
   // Shorthand default parameters.
   // This is a nice side-effect of the ||
   // operator.
+  console.log(rating);
   text = text || 'no quote text';
   author = author || 'anonymous';
+  rating = rating || 'unrated';
 
-  // Longer, but means more control:
-  // if(text === undefined){
-  //   text = 'no quote text';
-  // }
-  // if(author === undefined){
-  //   author = 'anonymous';
-  // }
-
-  // Now set up the instance here
   this.text = text;
   this.author = author;
+  this.rating = rating;
 };
-
-// Instance of a quote:
-var myQuote = new Quote('You miss 100% of the shots you don\'t take - Wayne Gretzky', '- Michael Scott');
-console.log(myQuote.text, myQuote.author);
-
-// What if I don't pass any arguments to the constructor?
-var emptyQuote = new Quote('This is a good quote');
-console.log(emptyQuote);
-
 
 
 Quote.prototype.create = function(){
-  this.el = $('<div>')
-    .text(this.text + ' - ' + this.author);
-  return this.el;
+	console.log('create');
+  		if(!this.el){
+  			this.el = $('#quoteTemplate')
+  			.clone()
+  			.attr('id', null)
+  			.addClass('quoteRender');
+  			
+  }
+    
+  	this.el.find('.quote').text(this.text);
+	this.el.find('.author').text(this.author);
+	this.el.find('.rating').text(this.rating);
+	console.log(this.el[0]);
+
+	return this.el;
 };
 
-$('#quotes').append( myQuote.create() );
-
-var testQuote = new Quote('test quote', 'dr. seuss');
-$('#quotes').append(testQuote.create());
 
 $('#submit-button').on('click', function(){
+	console.log('test in the submit');
+	
 	var quoteText = $(".quote-text").val();
 	var quoteAuthor = $(".author-text").val();
-	var tempQuote = new Quote(quoteText, quoteAuthor);
-	numDocs = $('numDocs' +1);
+	var quoteRating = $(".rating-text").val();
+	var tempQuote = new Quote(quoteText, quoteAuthor, quoteRating);
+
+	quoteArray.push(tempQuote);
 
 	console.log('test');
-	$('#quotes').append( tempQuote.create() );
+	$('#quoteContainer').append( tempQuote.create() );
 	var iterator = parseInt($('#document').text());
-	console.log(iterator);
-	$('#document').text(iterator + 1);
+	
 
+	$('#document').text(iterator += 1);
+	$(".quote-text").val('');
+	$(".author-text").val('');
+	$('.rating-text').val('');
+	console.log(iterator);
 });
+
+$('#sort-by-rating').on('click', function(){
+	console.log('Sort by rating test');
+	quoteArray.sort(function(a,b){
+		return b.rating - a.rating;
+	});
+	console.log(quoteArray);
+	quoteArray.forEach(function(q){
+		$('#quoteContainer').append( q.create());
+	});
+	
+});
+
+
+
 
 
