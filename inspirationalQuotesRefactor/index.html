@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Untitled</title>
+    <title>Inspirational Quotes</title>
     <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
     <link rel="stylesheet" type="text/css" href="main.css">
   </head>
@@ -18,7 +18,7 @@
             Quote:
           </label>
           <br />
-          <textarea class="quote-text" name="textarea" rows="5" placeholder="Insert your awesome quote here."></textarea>
+          <textarea class="quote-text" name="quote" rows="5" placeholder="Insert your awesome quote here."></textarea>
         </p>
 
         <p>
@@ -26,23 +26,79 @@
             Author
           </label>
           <br />
-          <textarea class="author-text" name="textarea" rows="1" placeholder="Who are you quoting?"></textarea>
+          <textarea class="author-text" name="author" rows="1" placeholder="Who are you quoting?"></textarea>
+        </p>
+
+
+
+<!-- Add the for the user to rate quote submissions. Default value for new quotes will be 'unrated' -->
+        <p>
+          <label for="textarea">
+            Rating
+          </label>
+          <br />
+          <textarea class="rating-text" name="rating" rows="1" placeholder="1-5 Please."></textarea>
         </p>
 
           <button id='submit-button'>Submit</button>
-       
-         <!--  <input id='submit-button' type="submit" value="Submit" />
-          &nbsp; -->
-         
-         <!--  <input type="reset" value="Clear" />
-          &nbsp; -->
           
         </p>
       </form>
     </div>
-    <div id="quotes">
+    
+    <div>
       <h1>Quotes: </h1>
-      <p>You have <span id='document'>0</span> documents.</p>
+      <p>You have <span id='document'>0</span> quotes.</p>
+    </div>
+    <div id="quotes">
+      
+    </div>
+    <div id="quoteContainer">
+          <div id="quoteTemplate">
+            <strong>Quote: </strong><span class='quote'>Quote</span>
+            <strong>      Author: </strong><span class='author'>Author</span>
+            <strong>      Rating: </strong><span class='rating'>Rating</span>
+            
+            <!-- <textarea class="rating-text" name="textarea" rows="1" placeholder="1-5 Please."></textarea> -->
+            <button name='rating-button'>Rate</button>
+            <button name='delete-button'>Delete</button>
+            <button name='edit-button'>Edit</button>
+      </div> 
+    </div>
+
+     <!-- Templates bank. Hidden in CSS -->
+    <div id="templates">
+
+      <!-- Template for each movie library -->
+      <!-- <div id="library-tpl">
+        <h2 class="library-name">Library Name</h2>
+        <form class="new-quote-form">
+          <input type="text" name="quote" placeholder="Quote">
+          <input type="text" name="author" placeholder="Author">
+          <input type="text" name="rating" placeholder="Rating">
+          <input type="submit">
+        </form>
+        <ul class="quote-list"></ul>
+      </div> -->
+
+      <!-- Template for each movie. This is an LI because it will eventually
+      end up inside of a UL as seen in the library template -->
+      <li id="quote-tpl">
+        <h4 class="movie-title">Movie Title</h4>
+        <em class="movie-description">Movie Description</em>
+        <em class=""
+      </li>
+
+    </div>
+
+
+
+    <div>
+      </p>
+
+          <button id='sort-by-rating'>Sort by Rating</button>
+          
+      </p>
     </div>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
