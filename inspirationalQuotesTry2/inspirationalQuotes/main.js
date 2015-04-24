@@ -20,8 +20,6 @@ var Quote = function(text, author, rating){
 
 
 
-
-
 Quote.prototype.render = function(){
 	console.log('render');
   		if(!this.el){
@@ -30,10 +28,9 @@ Quote.prototype.render = function(){
   			.attr('id', null)
   			.addClass('quoteRender');
   			var originalQuote = this;
-  			this.el.find('.delete-button').on('click', function(){
-  				console.log('delete-button test');
-  				// var deleteRender = $(this).closest('div').find('.quote').text();
-  				// console.log(originalQuote);
+
+  			//add removeQuote as a prototype to Quote
+  			var removeQuote = function(){
   				for (var i = 0; i < quoteArray.length; i++) {
   					if (originalQuote === quoteArray[i]) {
   						quoteArray.splice(i, 1);
@@ -42,8 +39,14 @@ Quote.prototype.render = function(){
   					
   				}
 
-  				$(this).closest('div').remove();
+  				originalQuote.el.remove();
   				$('#document').text(iterator -= 1);
+
+  			};
+  			this.el.find('.delete-button').on('click', function(){
+  				console.log('delete-button test');
+  			
+  				removeQuote();
 
 			});
 			this.el.find('.edit-button').on('click', function(){
@@ -54,20 +57,7 @@ Quote.prototype.render = function(){
   				$(".quote-text").val(originalQuote.text);
 				$(".author-text").val(originalQuote.author);
 
-				//lines 58 - 69 are duplicates of 
-				// var deleteRender = $(this).closest('div').find('.quote').text();
-  		// 		console.log(originalQuote);
-  				for (var i = 0; i < quoteArray.length; i++) {
-  					if (originalQuote === quoteArray[i]) {
-  						quoteArray.splice(i, 1);
-  						console.log('test splice');
-  					}
-  					
-  				}
-
-  				$(this).closest('div').remove();
-  				$('#document').text(iterator -= 1);
-  				
+  				removeQuote();
 
 			});
 			this.el.find('.rate-button').on('click',  function(){
